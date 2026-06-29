@@ -1,0 +1,115 @@
+═══════════════════════════════════════════════════════════════════════════════
+EXERCÍCIO 5 - Encontrar e Corrigir Problemas de Encapsulamento
+═══════════════════════════════════════════════════════════════════════════════
+
+OBJETIVO:
+Analisar código COM PROBLEMAS e identificar erros relacionados a encapsulamento.
+Você deve descrever O QUÊ está errado e COMO corrigir.
+
+═══════════════════════════════════════════════════════════════════════════════
+
+INSTRUÇÕES:
+1. Leia o código abaixo com cuidado
+2. Procure por problemas relacionados a:
+   - Atributos privados sendo acessados diretamente
+   - Falta de validação
+   - Falta de setters apropriados
+   - Propriedades sendo atribuídas sem setter
+3. Para CADA problema encontrado, responda:
+   - QUAL é o problema?
+   - ONDE está no código? (número da linha)
+   - POR QUÊ é um problema?
+   - COMO corrigir?
+
+═══════════════════════════════════════════════════════════════════════════════
+
+CÓDIGO PROBLEMÁTICO: Classe ContaBancaria
+───────────────────────────────────────────
+
+ 1  class ContaBancaria:
+ 2      def __init__(self, titular, saldo_inicial):
+ 3          self.titular = titular
+ 4          self.__saldo = saldo_inicial
+ 5          self.__limite = 500
+ 6          self.__historico_transacoes = []
+ 7      
+ 8      @property
+ 9      def saldo(self):
+ 9          return self.__saldo
+10      
+11      def depositar(self, valor):
+12          if valor > 0:
+13              self.__saldo += valor
+14              self.__historico_transacoes.append(f"Depósito: +{valor}")
+15          else:
+16              print("Erro: valor inválido")
+17      
+18      def sacar(self, valor):
+19          if valor > 0 and valor <= self.__saldo:
+20              self.__saldo -= valor
+21              self.__historico_transacoes.append(f"Saque: -{valor}")
+22          else:
+23              print("Erro: saque inválido")
+24      
+25      def aumentar_limite(self, novo_limite):
+26          self.__limite = novo_limite
+27      
+28      def obter_historico(self):
+29          return self.__historico_transacoes
+
+═══════════════════════════════════════════════════════════════════════════════
+
+PROBLEMA 1:
+───────────
+Linha(s): ____3_______
+O que está errado: ___________________titular não está definido como privated____________________________________
+
+Por que é um problema: ________________permite que o atributo titular seja alterado por qualquer um de dentro ou fora da classe___________________________________
+
+Como corrigir: ____________________declarar |self.titular = titular| como:  self.__titular = titular ______________________________________
+
+
+ANÁLISE - Encontre os problemas:
+
+PROBLEMA 2:
+───────────
+Linha(s): ___25/26________
+O que está errado: _______________alterar um encapsulamento privado sem set_ ou sem @Propriedade.setter, além de não se fazer uma verificação________________________________________
+
+Por que é um problema: ___________é um problema pois alem de não fazer uso do setter,permite que qualquer um possa modificalo além de não fazer uma verificação para connferir se tudo está correto________________________________________
+
+Como corrigir: __________________utilizando @aumentar_limite.setter e fazendo uma verificação para ver se o novo limite é compativel ex: if novo_limite > 0: ________________________________________
+
+
+PROBLEMA 3:
+───────────
+Linha(s): _____28______
+O que está errado: ______________falta do uso de @property ou get_obter_historico_________________________________________
+
+Por que é um problema: _______________a falta do @property faz com que algo que não seja do metodo getter esteja acessando um encapsulamento privado, o que é errado____________________________________
+
+Como corrigir: ______________colocando o marcador @property acima de def obter_historico____________________________________________
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+CENÁRIOS DE TESTE - O que aconteceria com o código:
+────────────────────────────────────────────────────
+
+Teste seu entendimento com esses cenários:
+
+# Teste 1:
+conta = ContaBancaria("João", 1000)
+print(conta.saldo)          # Funciona? _____sim, pois o metodo get com @property está no codigo__________
+conta.saldo = 999999        # Funciona? ______não, pois saldo está com o encapsulamento como privated _________
+                            # Resultado esperado: Erro! Não há setter
+
+# Teste 2:
+conta.aumentar_limite(-100)  # Funciona? _____funciona, pois o codigo está sem verificação, e deveria apenas permitir aumentar o limite e não diminir__________
+                             # Resultado esperado: Erro! Sem validação!
+
+# Teste 3:
+historico = conta.obter_historico()
+historico.append("FRAUDE")   # Funciona? _______sim, gerando um erro de segurança, pois não deveria ser possivel modificar a lista________
+print(conta.obter_historico())
+                             # Resultado esperado: Perigo! Lista exposta!

@@ -1,0 +1,9 @@
+
+User stories
+
+Reserva para salas de reunião
+Como: Product owner
+Quero: Reservar uma sala para a reuniões da equipe
+para: definimos os requisitos do sistema
+
+Critérios de aceitação:
