@@ -1,0 +1,98 @@
+ls_lista_compras = [] #cria a lista do carrinho de compras que irá armazenar os itens
+ls_quantidades = [] #cria a lista que ira armazenar as unidades de cada item
+lf_lista_valores = [] #cria a lista que irá armazenar o valor de cada unidade
+
+lf_valor_total = 0
+
+while True: #while para o sistema se repetir após cada operação ser realizada
+    print() #começo do menu do sistema
+    print("--Digite 1 para adicionar itens ao carrinho de compras --")
+    print("--Digite 2 para remover itens do carrinho de compras--")
+    print("--Digite 3 para vizualizar o carrinho de compras--")
+    print("--Digite 4 para vizualizar o valor total do carrinho de compras--")
+    print("--Digite 5 para finalizar o carrinho--")
+    print("--Digite 6 para fechar o sistema--")
+    #fim do menu do sistema
+
+    print()
+    li_opcao_escolhida = int(input("Digite a opção escolhida: ")) #variavel para armazenar a opção escolhida
+
+    if li_opcao_escolhida == 1: # estrutura if para adicionar itens ao carrinho de compras
+
+
+
+        ls_item = input("digite o item a ser adicionado: ").lower() #pede ao usuario digitar o item desejado a ser adicionado, .lower() para manter um padrão de digitação
+        ls_item_quantidade = (int(input("digite quantas unidades do item você quer adicionar: "))) #pede quantas unidades do item o usuarui quer adicionar
+        lf_valores = float(input("digite o valor de cada unidade do item que voce quer adicionar:  ")) # pede o valor de cada unidade do item que o usuario quer adicionar
+        if  ls_item_quantidade <= 0 or lf_valores <=0: #estrutura if dentro do if maior para validar que o usuario não colocou uma quantidade e ou valor invalido
+            print()
+            print("error: quantidade invalida de itens")
+            print()
+        else: # se a quantidade e o valor for valido adicionará o item, a quantidade e o valor em sua respectiva lista
+            ls_lista_compras.append(ls_item)
+            ls_quantidades.append(ls_item_quantidade)
+            lf_lista_valores.append(lf_valores)
+
+    elif li_opcao_escolhida == 2: #estrutura if para remover o o item desejado do carrinho de compras
+        ls_item = int(input("digite o numero do  item a ser removido (considere que o primeiro item parte da posição 0): ")) #pede para o usuario digitar o numero do item no array, para poder remover o item, a quantidade e o valor de suas respectivas listas
+        ls_lista_compras.pop(ls_item )
+        ls_quantidades.pop(ls_item)
+        lf_lista_valores.pop( ls_item)
+
+    elif li_opcao_escolhida == 3: #estrutura if para mostrar o carrinho de compras
+        if (len(ls_lista_compras)) <= 0: # se a quantidade de itens na lista for menor ou igual a 0 irá imprimir que não há itens no carrinho
+            print()
+            print("não há itens no carrinho")
+            print()
+        else: #caso a quantidade for maior que 0 irá printar o carrinho
+            print() 
+            for x in range (len(ls_lista_compras)): # laço for para mostrar a lista de uma maneira mais agradavel aos olhos
+                #cria variaveis para armazenar o nome, quantidade e valor para exibilas, o [x] serve para cada variavel ser respectivo ao numero do array, pois x irá aumentar a cada ve que o for se repetir
+                ls_item = ls_lista_compras[x]
+                li_quantidade = ls_quantidades[x]
+                lf_valor_compras = lf_lista_valores[x]
+                
+                print(f"--{ls_item}: {li_quantidade} unidades {(lf_valor_compras)*(li_quantidade)} Reais ao total  ") #printa item, unidade e valor total de cada item com todas as suas unidades
+            print()
+    elif li_opcao_escolhida == 4: #estrutura if para exibir o valor total
+        
+        for x in range (len(ls_lista_compras)): # for para calcular o total do valor das compras, o len(ls_lista_compras) serve para o for se repitir pela quantidade de vezes cujo será a quantidade de itens na lista
+           # cria variaveis para armazenar a quantidade e o valor das compras, o [x] serve para cada variavel ser respectivo ao numero do array, pois x irá aumentar a cada vez que o for se repetir
+            ls_item = ls_lista_compras[x]
+            li_quantidade = ls_quantidades[x]
+            lf_valor_compras = lf_lista_valores[x]
+
+            #cria a variavel que armazena o subtotal
+            lf_subtotal = (lf_valor_compras)*(li_quantidade)
+            #cria a variavel lf_valor_total que sempre é somada com o subtotal para assim dar o valor total do carrinho de compras
+            lf_valor_total +=  lf_subtotal
+
+        print(f"o valor total é de: {lf_valor_total}") #imprime o valor total
+    
+    elif li_opcao_escolhida ==5: #estrutura if para simular a finalização do carrinho de compras
+        print(f"o total da compra foi de: {lf_valor_total}") #imprime o total da compra
+        print()
+        opcao_pagamento = input("Digite a forma de pagamento: ") #pede a forma de pagamento
+
+        print(f"O metodo de pagamento escolhido foi escolhido foi {opcao_pagamento} e o pagamento foi efetuado com sucesso") #simula que o pagamento foi completo com sucesso para simular a operação de venda
+        
+        # dá clear em todas as listas para simular que a venda foi completa e o sistema voltará a tela inicial para esperar uma nova compra
+        ls_lista_compras.clear()
+        ls_quantidades.clear()
+        lf_lista_valores.clear()
+         # retorna o valor total a 00.00 para simular que a venda foi completa e o sistema voltará a tela inicial para esperar uma nova compra
+        lf_valor_total = 00.00
+            
+        
+
+    elif li_opcao_escolhida == 6: # fecha o sistema
+        print("fechando sistema")
+        break
+
+    else: #trata erros de o usuario não digitar uma opção predefinida
+        print("error: opção desconhecida")
+
+
+
+
+    

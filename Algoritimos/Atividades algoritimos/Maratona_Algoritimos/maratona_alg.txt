@@ -1,0 +1,645 @@
+#missao1 
+
+lf_notas = [] #Criação da lista notas cujo irá armazenas as notas do aluno
+
+li_qtd_notas = int(input("Digite quantas notas voce quer lançar: ")) #variavel que ira perguntar quantas notas o professor deseja lançar
+
+print() # print vazio para dar um espaço no terminar e ficar visualmente mais agradavel
+
+for n in range (li_qtd_notas): # laço de repetição "for" que irá utilizar a variavel qtd_notas para definir quantas vezes será definido
+    lf_notas_lancadas = float(input(f"digite a {n + 1}° nota: "))#variavel que irá pedir as notas do aluno
+    lf_notas.append(lf_notas_lancadas) #.append irá adicionar as notas lançadas na lista notas
+
+lf_media = sum(lf_notas)/len(lf_notas) #sum ira somar todas as notas dentro de listas e irá dividir por len() cujo informa quantos valores tem dentro da lista, resultando na média
+
+print()
+print(f"a média do aluno foi de: {(lf_media):.1f}") #apresentação da média
+
+
+#MISSÃO 2
+
+# Programa de conversão de moedas
+
+# No campo abaixo o usuário deve digitar a moeda que deseja converter (dolar, euro ou iene). 
+ls_moeda = input("Digite a moeda que deseja converter: (dolar, euro ou iene): ").lower() #O método lower() é utilizado para converter a entrada do usuário para minúsculas.
+
+# Com a estrutura abaixo o programa irá solicitar um valor em reais e realizar a conversão para a moeda escolhida.
+
+if ls_moeda == "dolar": #Se moeda for igual a "dolar", o programa irá solicitar um valor em reais e realizar a conversão para dólares.
+    lf_valor = float(input("Digite o valor em reais: "))
+    valor_convertido = lf_valor / 5.25 #A taxa de conversão utilizada é de 1 dólar = 5.25 reais. 
+    print(f"O valor em dólares é: {valor_convertido:.2f}") #O "f" antes das aspas permite a formatação de variáveis dentro da string, já o valor_convertido:.2f formata o valor para duas casas decimais.
+
+elif ls_moeda == "euro": #Se moeda for igual a "euro", o programa irá solicitar um valor em reais e realizar a conversão para euros.
+    lf_valor = float(input("Digite o valor em reais: "))
+    valor_convertido = lf_valor / 6.20 #A taxa de conversão utilizada é de 1 euro = 6.20 reais. 
+    print(f"O valor em euros é: {valor_convertido:.2f}")
+
+elif ls_moeda == "iene": #Se moeda for igual a "iene", o programa irá solicitar um valor em reais e realizar a conversão para ienes.
+    lf_valor = float(input("Digite o valor em reais: "))
+    valor_convertido = lf_valor / 0.048 #A taxa de conversão utilizada é de 1 iene = 0.048 reais.
+    print(f"O valor em ienes é: {valor_convertido:.2f}")
+
+else: #Se o usuário digitar uma moeda diferente de "dolar", "euro" ou "iene", o programa irá exibir uma mensagem de erro.
+    print("Moeda inválida. Por favor, digite 'dolar', 'euro' ou 'iene'.")
+
+
+#missao3
+
+def impar_par (a): #função para verificar se é par ou impar
+    if a % 2 ==0: # se a divido por 2 ter resto 0 é impar
+        return ("é par")
+    return("é impar") #caso de earn return, cujo caso o numero não se adeque a estrutura if já irá cair no return ("é impar")
+
+print()
+li_num = int(input("digite o numero que você quer verificar se é par ou impar: ")) #variavel que ira armazenar o numero escolhido
+print()
+print(impar_par(li_num)) # print que irá chamar a função para verificar se o numero é par ou impar
+
+#MISSAO 4
+
+# Calculadora de desconto
+
+# O campo abaixo pede ao usuário para digitar o preço original do produto e a porcentagem de desconto. 
+lf_preco_original = float(input("Digite o preço original do produto: "))
+lf_porcentagem_desconto = float(input("Digite a porcentagem de desconto: "))
+
+# Calcular o valor do desconto em cima do preço original.
+lf_valor_desconto = lf_preco_original * (lf_porcentagem_desconto / 100)
+
+# Calcular o preço com desconto subtraindo o valor do desconto do preço original.
+lf_preco_com_desconto = lf_preco_original - lf_valor_desconto
+
+# Exibe os resulatados.
+print(f"O valor do desconto é: {lf_valor_desconto:.2f}") # O valor do desconto é formatado para duas casas decimais utilizando :.2f.
+print(f"O preço com desconto é: {lf_preco_com_desconto:.2f}") # O preço com desconto também é formatado para duas casas decimais utilizando :.2f.
+
+
+
+#missao5
+
+class Validadores: #classe que ira agrupar o metodo estático que ira verificar a senha
+
+    @staticmethod
+    def valida_senha(senha):
+        quantidade = len(senha) #variavel que irá armazenar quantidades de caracteres que tem na senha
+
+        if quantidade >= 8: #se quantidade de caracteres for maior ou igual a 8 irá retornar senha valida
+            return ("senha valida ")
+        return ("senha invalida, sua senha deve ter pelo menos 8 digitos") #caso não, irá retornar senha invalida, pelo caso de earn return
+
+
+
+class Senhas: #classe que ira criar o objeto que será cada senha
+    def __init__(self,senha): 
+        self.senha = senha
+        
+ls_senha1 = Senhas(input("digite sua senha: ")) # instancia do objeto senha 1 cujo ira pedir para o usuario digitar sua senha
+
+print(Validadores.valida_senha(ls_senha1.senha)) #print cujo irá chamar o metodo estatico valida_senha com om atributo senha do objeto ls_senha1
+
+#MISSAO 6
+
+# Cadastro de Alunos
+
+# cria uma lista para armazenar os alunos cadastrados.
+ls_alunos = []
+
+# cria um laço de repetição para permitir o cadastro de múltiplos alunos. O usuário pode digitar 'sair' para encerrar o cadastro.
+while True:
+    ls_nome = input("Digite o nome do aluno que você deseja cadastrar (ou 'sair' para encerrar): ")
+    if ls_nome == 'sair': # se o nome digitado for 'sair', o programa irá encerrar o cadastro através do comando break, que encerra o loop do while.
+        break
+    
+
+    ls_alunos.append(ls_nome) # o comando append() é utilizado para adicionar o nome do aluno à lista de alunos cadastrados.
+    print(f"Aluno '{ls_nome}' cadastrado com sucesso!") # mostra uma mensagem para o usuário mostrando que o aluno foi cadastrado com sucesso.
+
+print("Alunos cadastrados:") # e no final exibe quais alunos foram cadastrados.
+for aluno in ls_alunos: # usa um loop for para percorrer a lista de alunos e exibir cada um deles.
+    print(f"- {aluno}")
+
+#MISSAO 7
+
+# Ranking de notas
+
+# O campo abaixo pega todas as notas lançadas e as armazena em uma lista.
+lf_notas = [] #Criação da lista notas cujo irá armazenas as notas do aluno.
+
+li_qtd_notas = int(input("Digite quantas notas voce quer lançar: ")) # variavel que ira perguntar quantas notas o professor deseja lançar.
+
+print() # print vazio para dar um espaço no terminar e ficar visualmente mais agradavel.
+
+for n in range (li_qtd_notas): # laço de repetição "for" que irá utilizar a variavel qtd_notas para definir quantas vezes será definido.
+
+    lf_notas_lancadas = float(input(f"digite a {n + 1}° nota: "))#variavel que irá pedir as notas do aluno
+    lf_notas.append(lf_notas_lancadas) # .append irá adicionar as notas lançadas na lista notas.
+    
+    lf_ranking = sorted(lf_notas, reverse=True) # sorted irá ordenar as notas em ordem decrescente, ou seja, da maior para a menor, e irá armazenar na variavel ranking.
+print(f"Ranking das notas: {lf_ranking}") # apresentação do ranking das notas.
+
+
+
+
+#missao8
+
+ls_lista_compras = [] #criação da lista de compras
+
+while True: #wilhe true para fazer com que o codigo se repita até que o usuario decida finalizar o programa
+    print() 
+    print('--seja bem vindo à lista de compras--') #inicio do menu do sistema de listas
+    print() 
+    print("--digite 1 para adicionar itens a lista--")
+    print("--digite 2 para remover itens da lista--")
+    print("--digite 3 para vizualizar a lista--")
+    print("--digite 4 para fechar o programa--")
+    print()
+    li_opcao = int(input("digite o numero da opção escolida: ")) #variavel que irá armazenar a opção escolhida
+    print()
+
+    if li_opcao == 1: # estrutura if para a opção de adicionar itens a lista
+        ls_item = input("digite o item cujo você quer adicionar na lista: ").lower() #variavel para adicionar o item escolhido, .lower é utilizado para manter um padrão de digitação
+        ls_lista_compras.append(ls_item) #adiciona o item na lista
+    
+    elif li_opcao == 2:# estrutura if para a opção de remover itens a lista
+        ls_item = input("digite o item cujo você quer remover na lista: ").lower() #variavel para remover o item escolhido, .lower é utilizado para manter um padrão de digitação
+        ls_lista_compras.remove(ls_item) #.remove() remove o item armazenado na variavel ls_item
+
+    elif li_opcao == 3: #estrutura if para a opção de visualizar a lista
+        print(ls_lista_compras) #printa a lista
+
+    elif li_opcao == 4: #estrutura if para a opção de fechar o sistema
+        print("fechando sistema")
+        break #break para parar o codigo
+
+    else: #else para tratar de opções cujo não sejam as 4 predefinidas
+        print("error: opção desconhecida") #error para informar que esta opção não é conhecida
+
+
+
+#MISSAO9
+
+# Controle de estoque
+
+# Criação de um dicionário para armazenar os produtos e suas quantidades.
+ld_produtos = {
+} # o dicionário é inicialmente vazio, mas os produtos e suas quantidades serão adicionados conforme o usuário interagir com o programa. 
+
+
+while True: # laço de repetição para permitir que o usuário realize várias operações até decidir sair do programa.
+    
+    # exibe o estoque atual, mostrando cada produto e sua quantidade.
+    print("\nEstoque atual:") # o "\n" é utilizado para criar uma nova linha.
+        for produto, quantidade in ld_produtos.items(): # o método items() é utilizado para obter os itens do dicionário correspondente.
+        print(f"{produto}: {quantidade}") # aqui é exibido o nome do produto e a quantidade correspondente.
+    print()
+
+    # aqui foi utilizado uma série de prints para mostrar as opções disponíveis para o usuário com clareza, e deixar o programa mais organizado e fácil de usar.
+    print("Digite a operação que deseja realizar:") # o usuário é orientado a escolher uma ação pré-definida, onde cada uma delas resulta em uma operação diferente.
+    print("1 - Adicionar produto") # o usuario pode adicionar um produto ao estoque.
+    print("2 - Remover produto") # o usuario pode remover um produto do estoque.
+    print("3 - Verificar estoque") # o usuario pode verificar o estoque atual.
+    print("4 - Sair") # o usuario encerra o programa.
+    li_opcao = int(input("Opção: ")) 
+
+    if li_opcao == 1: # caso o usuário escolha a opção 1 a seguinte operação será realizada:
+        ls_produto = input("\nDigite o nome do produto que deseja adicionar: ").lower() # o usuario informa qual produto deseja adicionar ao estoque
+        li_quantidade = int(input("Digite a quantidade do produto: ")) # logo em seguida informa a quantidade desse produto que vai ir para o estoque
+        if ls_produto in ld_produtos: # o programa verifica se o produto já existe no estoque.
+            ld_produtos[ls_produto] += li_quantidade # se o produto já existir, a quantidade informada é adicionada à quantidade existente no estoque
+        else:
+            ld_produtos[ls_produto] = li_quantidade # se o produto não existir, ele é adicionado ao dicionário com a quantidade informada
+        print(f"Produto '{ls_produto}' adicionado com sucesso! Quantidade atual: {ld_produtos[ls_produto]}") # o programa confirma que o produto foi adicionado com sucesso e exibe a quantidade atual do produto
+
+    elif li_opcao == 2: # caso o usuário escolha a opção 2 a seguinte operação será realizada:
+        ls_produto = input("\nDigite o nome do produto que deseja remover: ").lower() # o usuario informa qual produto deseja remover do estoque
+        if ls_produto in ld_produtos: # o programa verifica se o produto existe no estoque
+            li_quantidade = int(input("Digite a quantidade do produto a ser removida: ")) # o usuario informa a quantidade do produto que deseja remover do estoque
+            if li_quantidade <= ld_produtos[ls_produto]: # o programa verifica se a quantidade a ser removida é menor ou igual à quantidade disponível no estoque
+                ld_produtos[ls_produto] -= li_quantidade # se a quantidade a ser removida for válida, ela é subtraída da quantidade atual do produto no estoque
+                print(f"Produto '{ls_produto}' removido com sucesso! Quantidade atual: {ld_produtos[ls_produto]}") #o codigo ira imprimir a a confirmacao de que o produto foi removido com sucesso e exibe a quantidade atual do produto no estoque
+            else:
+                print(f"Quantidade insuficiente em estoque. Quantidade atual de '{ls_produto}': {ld_produtos[ls_produto]}") # se a quantidade a ser removida for maior do que a quantidade disponível no estoque, o programa exibe uma mensagem de erro.
+        else:
+            print(f"Produto '{ls_produto}' não encontrado no estoque.") # se o produto informado para remoção não existir no estoque, o programa exibe uma mensagem de erro.
+
+    elif li_opcao == 3: # caso o usuário escolha a opção 3 a seguinte operação será realizada:
+        print("\nEstoque atual:") # o programa exibe o estoque atual, mostrando cada produto e sua quantidade.
+        for produto, quantidade in ld_produtos.items(): # o método items() é utilizado para obter os itens do dicionário correspondente, e exibe o nome do produto e a quantidade correspondente.
+            print(f"\n{produto}: {quantidade}") # exibe o nome do produto e a quantidade correspondente.
+
+        if not ld_produtos: # se o dicionário de produtos estiver vazio o programa exibe uma mensagem de alerta
+            print("O estoque está vazio.")
+
+    elif li_opcao == 4: # caso o usuário escolha a opção 4 a seguinte operação será realizada:
+        print("\nEncerrando o programa. Até mais!") # o programa exibe uma mensagem de despedida e encerra o programa utilizando o comando break.
+        break # encerra o loop, e consequentemente o programa.
+
+
+
+#missao10
+
+lf_lista_numeros = [] #criação da lista que irá armazenar os numeros escolhidos
+
+li_quantos_nums = int(input("quantos numeros você quer digitar? ")) #variavel que irá pedir quantos numeros o usuario quer digitar
+
+for n in range (li_quantos_nums): #estrutura for que usará li_quantos_nums para definir quantas vezes irá se repetir 
+    lf_nums_escolhidos = float(input(f"digite o {n + 1}° numero: "))#variavel que irá pedir os numeros a serem somados e feitos a média
+    lf_lista_numeros.append(lf_nums_escolhidos) #.append irá adicionar os numeros escolhidos na lista_numeros
+
+lf_media = sum(lf_lista_numeros)/len(lf_lista_numeros) #fará a média dos numeros escolhidos
+
+print(f"a lista contem {len(lf_lista_numeros)} numeros, a soma de tudo é {sum(lf_lista_numeros)} e a média de tudo é {lf_media}")
+#len() mostrará quantos numeros tem na lista, sum() fará a soma de tudo que está na lista e lf_media mostrará a média de tudo que esta na lista
+
+
+#missao 11
+
+saldo_total = 00.00 #saldo inicial definido como 0
+
+while True:
+    print()
+    print('--seja bem vindo ao sistema bancario--') #inicio do menu do sistema 
+    print() 
+    print("--digite 1 para adicionar saldo --")
+    print("--digite 2 para sacar  --")
+    print("--digite 3 para vizualizar o saldo--")
+    print("--digite 4 para fechar o programa--")
+    print()
+    li_opcao = int(input("digite o numero da opção escolida: ")) #variavel que irá armazenar a opção escolhida
+    print()
+
+    if li_opcao == 1: # estrutura if para adicionar saldo
+        adicionar_saldo = float(input("digite quanto de saldo voce quer adicionar: "))
+        saldo_total += adicionar_saldo #+= irá sempre adicionar o valor de "adicionar_saldo" ao saldo_total
+    
+    elif li_opcao == 2: #estrutura if para sacar um valor do saldo
+        saque = float(input("digite quanto de saldo voce quer sacar: "))
+        if saque > saldo_total: #estrutura if para tratar de caso o valor desejado seja maior que o saldo total da conta
+            print("erro, saldo insuficiente ")
+        else:
+            saldo_total -= saque #se o valor desejado de saque for menor que o saldo total -= ira sempre retirar o valor desejado do saldo total
+    
+    elif li_opcao == 3: #estrutura if para a opção de mostrar o saldo
+        print(f"o saldo atual é de: {saldo_total}")
+    
+    elif li_opcao == 4: #estrutura if para a opção de fechar o sistema
+        print("fechando sistema")
+        break #break para parar o código
+
+
+#MISSAO12 (CODIGO TAMBEM RESPONDE A 19,20,21)
+
+# Sistema de Controle de Vendas
+
+# O campo abaixo cria um dicionário para armazenar os produtos e seus preços.
+ld_produtos = {
+    "Notebook": 1500.00, 
+    "Smartphone": 800.00,
+    "Tablet": 600.00
+}
+
+ld_lucro = {}
+
+# aqui foi usado um laço de repetição para que o usúario possa realizar várias operações sem precisar reiniciar o programa.
+while True:
+    print("\nSistema de Controle de Vendas, qual operação deseja realizar?") # aqui o programa pergunta ao usuário qual operação ele deseja realizar
+    print("1 - Registrar venda") # o usuario pode registrar uma venda, onde ele irá informar o nome do produto vendido e o preço de venda, e o programa irá calcular o lucro obtido com a venda
+    print("2 - Verificar estoque") # o usuario pode verificar o estoque, onde o programa irá exibir os produtos disponíveis para venda e seus preços
+    print("3 - Sair") # e o usuario pode encerrar o loop, e consequentemente o programa
+    li_opcao = input("Opção: ") # aqui fica o campo onde o usuário registra sua decisão
+
+    if li_opcao == "1": # caso o usuário escolha a opção 1 a seguinte operação será realizada:
+        ls_produto = input("Digite o nome do produto vendido: ") # o usuario informa o nome do produto vendido
+        lf_preco_venda = float(input("Digite o preço de venda: ")) # o usuario informa o preço de venda do produto
+        lf_lucro = lf_preco_venda - ld_produtos[ls_produto] # o programa calcula o lucro obtido com a venda subtraindo o preço de venda do preço do produto registrado no dicionário
+        ld_lucro[ls_produto] = lf_lucro # o programa armazena o lucro obtido no dicionário de lucros
+
+        if ls_produto in ld_produtos: # se o produto informado pelo usuário existe no dicionário de produtos
+            print(f"Venda registrada: {ls_produto} de R${ld_produtos[ls_produto]} por R${lf_preco_venda:.2f}") # o programa exibe uma mensagem confirmando que a venda foi registrada
+            print(f"Lucro obtido: R${lf_lucro:.2f}") # o programa exibe o lucro obtido com a venda, formatado para duas casas decimais utilizando :.2f
+        else: # se o produto informado pelo usuário não existe no dicionário de produtos
+            print("Produto não encontrado.") # o programa exibe uma mensagem de erro
+
+    elif li_opcao == "2": # caso o usuário escolha a opção 2 a seguinte operação será realizada:
+        print("\nProdutos disponíveis para venda:") # o programa exibe os produtos disponíveis para venda, mostrando o nome do produto e seu preço
+        for produto, preco in ld_produtos.items(): # o "for" cria um laço de repetição para percorrer o dicionário de produtos, onde "produto" representa o nome do produto e "preco" representa o preço
+            print(f"{produto}: R${preco:.2f}") # o programa exibe o nome do produto e seu preço
+
+    elif li_opcao == "3": # caso o usuário escolha a opção 3 a seguinte operação será realizada:
+        print("Encerrando o programa. Até mais!") # o programa exibe uma mensagem
+        break # e logo em seguida encerra o programa utilizando o comando break, que encerra o loop do while
+
+    else: # se o usuário digitar uma opção inválida, ou seja, diferente de 1, 2 ou 3
+        print("Opção inválida. Por favor, escolha uma opção válida.") # o programa exibe uma mensagem de erro, orientando o usuário a escolher uma opção válida
+
+
+
+print("\nRelatório de Vendas") # o programa exibe um relatório de vendas, mostrando os lucros obtidos com cada produto e o lucro total obtido com as vendas
+print("Lucros obtidos com as vendas:") # o programa exibe os lucros obtidos com as vendas, mostrando o nome do produto e o lucro correspondente
+for produto, lucro in ld_lucro.items(): # o "for" cria um laço de repetição para percorrer o dicionário de lucros
+    print(f"{produto}: R${lucro:.2f}") # o programa exibe o nome do produto e o lucro correspondente, 
+total_lucro = sum(ld_lucro.values()) # o programa calcula o lucro total obtido com as vendas utilizando a função sum() para somar os valores do dicionário de lucros
+print(f"Lucro total: R${total_lucro:.2f}") # o programa exibe o lucro total obtido com as vendas
+
+
+
+
+
+
+
+
+
+
+
+#MISSAO13
+
+print()  #variaveis que irão armazenar o user e a senha cadastrados
+ls_user_cadastro = input("cadastre o seu user: ")
+ls_senha_cadastro = input("cadastre a sua senha: ")
+print()
+
+# while para ficar repetindo caso o usuario erre o login e a senha
+while True:
+    print()         #variaveis que irão armazenar o para verificar se user e senha estão corretos
+    ls_user_login = input("digite o seu user: ")
+    ls_senha_login = input("digite a sua senha: ")
+    print()
+
+    if ls_user_cadastro == ls_user_login and ls_senha_cadastro == ls_senha_cadastro: #ira verificar se user e senha são iguais aos cadastrados
+        print("acesso permitido") 
+        break #se user e senha forem iguais aos cadastrados irá printar que o acesso foi permitido e finalizar o codigo
+
+    else: #caso o user e senha não sejam iguais aos cadastrados ira imprimir que estão errados e após isso ira cair na estrutura while denovo
+        print("error: login e ou senha incorretos, tente novamente")
+ 
+
+
+#MISSÃO14
+
+saldo_total = 500.00
+
+while True:
+    print()
+    print(f" o saldo atual é de {saldo_total}") #imprime p saldo total sempre que while 
+    print()
+    print("--digite 1 para adicionar saldo --")
+    print("--digite 2 para sacar  --")
+    print("--digite 3 para fechar o programa--")
+    print()
+    li_opcao = int(input("digite o numero da opção escolida: ")) #variavel que irá armazenar a opção escolhida
+    print()
+
+    if li_opcao == 1: # estrutura if para adicionar saldo
+        adicionar_saldo = float(input("digite quanto de saldo voce quer adicionar: "))
+        saldo_total += adicionar_saldo #+= irá sempre adicionar o valor de "adicionar_saldo" ao saldo_total
+    
+    elif li_opcao == 2: #estrutura if para sacar um valor do saldo
+        saque = float(input("digite quanto de saldo voce quer sacar: "))
+        if saque > saldo_total: #estrutura if para tratar de caso o valor desejado seja maior que o saldo total da conta
+            print("erro, saldo insuficiente ")
+        else:
+            saldo_total -= saque #se o valor desejado de saque for menor que o saldo total -= ira sempre retirar o valor desejado do saldo total
+    
+    elif li_opcao == 3: #estrutura if para a opção de fechar o sistema
+        print("fechando sistema")
+        break #break para parar o codigo
+
+
+
+#MISSÃO 15
+
+nome_e_medias = {} #criação do dicionario que irá armazenar os nomes e as médias
+
+# inputs que irão definir quantos alunos o sistema irá usar as notas e quantas notas serão lançadas
+li_quantidade_alunos = int(input("digite quantos alunos voce quer cadastrar a nota: "))
+li_quantas_notas = int(input("digite quantas notas voce quer cadastrar por aluno: "))
+
+for li_num_alunos in range(li_quantidade_alunos): #laço for que irá utilizar se repetira pelo valor armazenado em (li_quantidade_alunos)
+    print()
+    nome= input(f"digite o nome do {li_num_alunos + 1}° aluno: ") #irá perguntar o nome do aluno que terá a nota lançada
+    print()
+    notas = [] #cria a lista notas
+    for x in range (li_quantas_notas): #laço que ira se repetir pelo valor armazenado em li_quantas_notas para perguntar as notas de cada aluno, como o laço está dentro do 1°
+       
+       nota= float(input(f"digite a {x + 1} nota do {nome}: ")) #irá perguntar as notas do aluno
+       notas.append(nota) #irá adicionar as notas na lista nota
+    media = sum(notas)/len(notas) #irá calcular a media das notas dentro da lista nota
+    nome_e_medias[nome] = media #irá adicionar ao dicionario a média de cada aluno com 
+
+print()
+print(nome_e_medias) #irá imprimir ao dicionário
+        
+
+
+#MISSÃO16
+
+ls_lista_compras = [] #cria a lista do carrinho de compras que irá armazenar os itens
+ls_quantidades = [] #cria a lista que ira armazenar as unidades de cada item
+lf_lista_valores = [] #cria a lista que irá armazenar o valor de cada unidade
+
+lf_valor_total = 0
+
+while True: #while para o sistema se repetir após cada operação ser realizada
+    print() #começo do menu do sistema
+    print("--Digite 1 para adicionar itens ao carrinho de compras --")
+    print("--Digite 2 para remover itens do carrinho de compras--")
+    print("--Digite 3 para vizualizar o carrinho de compras--")
+    print("--Digite 4 para vizualizar o valor total do carrinho de compras--")
+    print("--Digite 5 para finalizar o carrinho--")
+    print("--Digite 6 para fechar o sistema--")
+    #fim do menu do sistema
+
+    print()
+    li_opcao_escolhida = int(input("Digite a opção escolhida: ")) #variavel para armazenar a opção escolhida
+
+    if li_opcao_escolhida == 1: # estrutura if para adicionar itens ao carrinho de compras
+
+
+
+        ls_item = input("digite o item a ser adicionado: ").lower() #pede ao usuario digitar o item desejado a ser adicionado, .lower() para manter um padrão de digitação
+        ls_item_quantidade = (int(input("digite quantas unidades do item você quer adicionar: "))) #pede quantas unidades do item o usuarui quer adicionar
+        lf_valores = float(input("digite o valor de cada unidade do item que voce quer adicionar:  ")) # pede o valor de cada unidade do item que o usuario quer adicionar
+        if  ls_item_quantidade <= 0 or lf_valores <=0: #estrutura if dentro do if maior para validar que o usuario não colocou uma quantidade e ou valor invalido
+            print()
+            print("error: quantidade invalida de itens")
+            print()
+        else: # se a quantidade e o valor for valido adicionará o item, a quantidade e o valor em sua respectiva lista
+            ls_lista_compras.append(ls_item)
+            ls_quantidades.append(ls_item_quantidade)
+            lf_lista_valores.append(lf_valores)
+
+    elif li_opcao_escolhida == 2: #estrutura if para remover o o item desejado do carrinho de compras
+        ls_item = int(input("digite o numero do  item a ser removido (considere que o primeiro item parte da posição 0): ")) #pede para o usuario digitar o numero do item no array, para poder remover o item, a quantidade e o valor de suas respectivas listas
+        ls_lista_compras.pop(ls_item )
+        ls_quantidades.pop(ls_item)
+        lf_lista_valores.pop( ls_item)
+
+    elif li_opcao_escolhida == 3: #estrutura if para mostrar o carrinho de compras
+        if (len(ls_lista_compras)) <= 0: # se a quantidade de itens na lista for menor ou igual a 0 irá imprimir que não há itens no carrinho
+            print()
+            print("não há itens no carrinho")
+            print()
+        else: #caso a quantidade for maior que 0 irá printar o carrinho
+            print() 
+            for x in range (len(ls_lista_compras)): # laço for para mostrar a lista de uma maneira mais agradavel aos olhos
+                #cria variaveis para armazenar o nome, quantidade e valor para exibilas, o [x] serve para cada variavel ser respectivo ao numero do array, pois x irá aumentar a cada ve que o for se repetir
+                ls_item = ls_lista_compras[x]
+                li_quantidade = ls_quantidades[x]
+                lf_valor_compras = lf_lista_valores[x]
+                
+                print(f"--{ls_item}: {li_quantidade} unidades {(lf_valor_compras)*(li_quantidade)} Reais ao total  ") #printa item, unidade e valor total de cada item com todas as suas unidades
+            print()
+    elif li_opcao_escolhida == 4: #estrutura if para exibir o valor total
+        
+        for x in range (len(ls_lista_compras)): # for para calcular o total do valor das compras, o len(ls_lista_compras) serve para o for se repitir pela quantidade de vezes cujo será a quantidade de itens na lista
+           # cria variaveis para armazenar a quantidade e o valor das compras, o [x] serve para cada variavel ser respectivo ao numero do array, pois x irá aumentar a cada vez que o for se repetir
+            ls_item = ls_lista_compras[x]
+            li_quantidade = ls_quantidades[x]
+            lf_valor_compras = lf_lista_valores[x]
+
+            #cria a variavel que armazena o subtotal
+            lf_subtotal = (lf_valor_compras)*(li_quantidade)
+            #cria a variavel lf_valor_total que sempre é somada com o subtotal para assim dar o valor total do carrinho de compras
+            lf_valor_total +=  lf_subtotal
+
+        print(f"o valor total é de: {lf_valor_total}") #imprime o valor total
+    
+    elif li_opcao_escolhida ==5: #estrutura if para simular a finalização do carrinho de compras
+        print(f"o total da compra foi de: {lf_valor_total}") #imprime o total da compra
+        print()
+        opcao_pagamento = input("Digite a forma de pagamento: ") #pede a forma de pagamento
+
+        print(f"O metodo de pagamento escolhido foi escolhido foi {opcao_pagamento} e o pagamento foi efetuado com sucesso") #simula que o pagamento foi completo com sucesso para simular a operação de venda
+        
+        # dá clear em todas as listas para simular que a venda foi completa e o sistema voltará a tela inicial para esperar uma nova compra
+        ls_lista_compras.clear()
+        ls_quantidades.clear()
+        lf_lista_valores.clear()
+         # retorna o valor total a 00.00 para simular que a venda foi completa e o sistema voltará a tela inicial para esperar uma nova compra
+        lf_valor_total = 00.00
+            
+        
+
+    elif li_opcao_escolhida == 6: # fecha o sistema
+        print("fechando sistema")
+        break
+
+    else: #trata erros de o usuario não digitar uma opção predefinida
+        print("error: opção desconhecida")
+
+
+#MISSÃO 17 E 18 (AS DUAS ESTÃO EM UM CODIGO SÓ)
+
+
+
+# Criação de um dicionário para armazenar os produtos e suas quantidades.
+ld_produtos = {
+} # o dicionário é inicialmente vazio, mas os produtos e suas quantidades serão adicionados conforme o usuário interagir com o programa. 
+
+
+while True: # laço de repetição para permitir que o usuário realize várias operações até decidir sair do programa.
+    
+    # exibe o estoque atual, mostrando cada produto e sua quantidade.
+    print("\nEstoque atual:") # o "\n" é utilizado para criar uma nova linha.
+    for produto, quantidade in ld_produtos.items(): # o método items() é utilizado para obter os itens do dicionário correspondente.
+        print(f"{produto}: {quantidade}") # aqui é exibido o nome do produto e a quantidade correspondente.
+    print()
+
+    # aqui foi utilizado uma série de prints para mostrar as opções disponíveis para o usuário com clareza, e deixar o programa mais organizado e fácil de usar.
+    print("Digite a operação que deseja realizar:") # o usuário é orientado a escolher uma ação pré-definida, onde cada uma delas resulta em uma operação diferente.
+    print("1 - Adicionar produto") # o usuario pode adicionar um produto ao estoque.
+    print("2 - Remover produto") # o usuario pode remover um produto do estoque.
+    print("3 - Verificar estoque") # o usuario pode verificar o estoque atual.
+    print("4 - Sair") # o usuario encerra o programa.
+    li_opcao = int(input("Opção: ")) 
+
+    if li_opcao == 1: # caso o usuário escolha a opção 1 a seguinte operação será realizada:
+        ls_produto = input("\nDigite o nome do produto que deseja adicionar: ").lower() # o usuario informa qual produto deseja adicionar ao estoque
+        li_quantidade = int(input("Digite a quantidade do produto: ")) # logo em seguida informa a quantidade desse produto que vai ir para o estoque
+        if ls_produto in ld_produtos: # o programa verifica se o produto já existe no estoque.
+            ld_produtos[ls_produto] += li_quantidade # se o produto já existir, a quantidade informada é adicionada à quantidade existente no estoque
+        else:
+            ld_produtos[ls_produto] = li_quantidade # se o produto não existir, ele é adicionado ao dicionário com a quantidade informada
+        print(f"Produto '{ls_produto}' adicionado com sucesso! Quantidade atual: {ld_produtos[ls_produto]}") # o programa confirma que o produto foi adicionado com sucesso e exibe a quantidade atual do produto
+
+    elif li_opcao == 2: # caso o usuário escolha a opção 2 a seguinte operação será realizada:
+        ls_produto = input("\nDigite o nome do produto que deseja remover: ").lower() # o usuario informa qual produto deseja remover do estoque
+        if ls_produto in ld_produtos: # o programa verifica se o produto existe no estoque
+            li_quantidade = int(input("Digite a quantidade do produto a ser removida: ")) # o usuario informa a quantidade do produto que deseja remover do estoque
+            if li_quantidade <= ld_produtos[ls_produto]: # o programa verifica se a quantidade a ser removida é menor ou igual à quantidade disponível no estoque
+                ld_produtos[ls_produto] -= li_quantidade # se a quantidade a ser removida for válida, ela é subtraída da quantidade atual do produto no estoque
+                print(f"Produto '{ls_produto}' removido com sucesso! Quantidade atual: {ld_produtos[ls_produto]}") #o codigo ira imprimir a a confirmacao de que o produto foi removido com sucesso e exibe a quantidade atual do produto no estoque
+            else:
+                print(f"Quantidade insuficiente em estoque. Quantidade atual de '{ls_produto}': {ld_produtos[ls_produto]}") # se a quantidade a ser removida for maior do que a quantidade disponível no estoque, o programa exibe uma mensagem de erro.
+        else:
+            print(f"Produto '{ls_produto}' não encontrado no estoque.") # se o produto informado para remoção não existir no estoque, o programa exibe uma mensagem de erro.
+
+    elif li_opcao == 3: # caso o usuário escolha a opção 3 a seguinte operação será realizada:
+        print("\nEstoque atual:") # o programa exibe o estoque atual, mostrando cada produto e sua quantidade.
+        for produto, quantidade in ld_produtos.items(): # o método items() é utilizado para obter os itens do dicionário correspondente, e exibe o nome do produto e a quantidade correspondente.
+            print(f"\n{produto}: {quantidade}") # exibe o nome do produto e a quantidade correspondente.
+
+        if not ld_produtos: # se o dicionário de produtos estiver vazio o programa exibe uma mensagem de alerta
+            print("O estoque está vazio.")
+
+    elif li_opcao == 4: # caso o usuário escolha a opção 4 a seguinte operação será realizada:
+        print("\nEncerrando o programa. Até mais!") # o programa exibe uma mensagem de despedida e encerra o programa utilizando o comando break.
+        break # encerra o loop, e consequentemente o programa.
+
+
+#MISSÃO 12, 19,20 E 21 (TODAS ESTÃO NO MESMO CODIGO)
+
+# Sistema de Controle de Vendas
+
+# O campo abaixo cria um dicionário para armazenar os produtos e seus preços.
+ld_produtos = {
+    "Notebook": 1500.00, 
+    "Smartphone": 800.00,
+    "Tablet": 600.00
+}
+
+ld_lucro = {}
+
+# aqui foi usado um laço de repetição para que o usúario possa realizar várias operações sem precisar reiniciar o programa.
+while True:
+    print("\nSistema de Controle de Vendas, qual operação deseja realizar?") # aqui o programa pergunta ao usuário qual operação ele deseja realizar
+    print("1 - Registrar venda") # o usuario pode registrar uma venda, onde ele irá informar o nome do produto vendido e o preço de venda, e o programa irá calcular o lucro obtido com a venda
+    print("2 - Verificar estoque") # o usuario pode verificar o estoque, onde o programa irá exibir os produtos disponíveis para venda e seus preços
+    print("3 - Sair") # e o usuario pode encerrar o loop, e consequentemente o programa
+    li_opcao = input("Opção: ") # aqui fica o campo onde o usuário registra sua decisão
+
+    if li_opcao == "1": # caso o usuário escolha a opção 1 a seguinte operação será realizada:
+        ls_produto = input("Digite o nome do produto vendido: ") # o usuario informa o nome do produto vendido
+        lf_preco_venda = float(input("Digite o preço de venda: ")) # o usuario informa o preço de venda do produto
+        lf_lucro = lf_preco_venda - ld_produtos[ls_produto] # o programa calcula o lucro obtido com a venda subtraindo o preço de venda do preço do produto registrado no dicionário
+        ld_lucro[ls_produto] = lf_lucro # o programa armazena o lucro obtido no dicionário de lucros
+
+        if ls_produto in ld_produtos: # se o produto informado pelo usuário existe no dicionário de produtos
+            print(f"Venda registrada: {ls_produto} de R${ld_produtos[ls_produto]} por R${lf_preco_venda:.2f}") # o programa exibe uma mensagem confirmando que a venda foi registrada
+            print(f"Lucro obtido: R${lf_lucro:.2f}") # o programa exibe o lucro obtido com a venda, formatado para duas casas decimais utilizando :.2f
+        else: # se o produto informado pelo usuário não existe no dicionário de produtos
+            print("Produto não encontrado.") # o programa exibe uma mensagem de erro
+
+    elif li_opcao == "2": # caso o usuário escolha a opção 2 a seguinte operação será realizada:
+        print("\nProdutos disponíveis para venda:") # o programa exibe os produtos disponíveis para venda, mostrando o nome do produto e seu preço
+        for produto, preco in ld_produtos.items(): # o "for" cria um laço de repetição para percorrer o dicionário de produtos, onde "produto" representa o nome do produto e "preco" representa o preço
+            print(f"{produto}: R${preco:.2f}") # o programa exibe o nome do produto e seu preço
+
+    elif li_opcao == "3": # caso o usuário escolha a opção 3 a seguinte operação será realizada:
+        print("Encerrando o programa. Até mais!") # o programa exibe uma mensagem
+        break # e logo em seguida encerra o programa utilizando o comando break, que encerra o loop do while
+
+    else: # se o usuário digitar uma opção inválida, ou seja, diferente de 1, 2 ou 3
+        print("Opção inválida. Por favor, escolha uma opção válida.") # o programa exibe uma mensagem de erro, orientando o usuário a escolher uma opção válida
+
+
+
+print("\nRelatório de Vendas") # o programa exibe um relatório de vendas, mostrando os lucros obtidos com cada produto e o lucro total obtido com as vendas
+print("Lucros obtidos com as vendas:") # o programa exibe os lucros obtidos com as vendas, mostrando o nome do produto e o lucro correspondente
+for produto, lucro in ld_lucro.items(): # o "for" cria um laço de repetição para percorrer o dicionário de lucros
+    print(f"{produto}: R${lucro:.2f}") # o programa exibe o nome do produto e o lucro correspondente, 
+total_lucro = sum(ld_lucro.values()) # o programa calcula o lucro total obtido com as vendas utilizando a função sum() para somar os valores do dicionário de lucros
+print(f"Lucro total: R${total_lucro:.2f}") # o programa exibe o lucro total obtido com as vendas
+
+

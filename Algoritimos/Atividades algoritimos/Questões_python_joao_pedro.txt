@@ -1,0 +1,175 @@
+
+EX 1: 
+nome_e_medias = {}
+
+
+li_quantidade_alunos = int(input("digite quantos alunos voce quer cadastrar a nota: "))
+li_quantas_notas = int(input("digite quantas notas voce quer cadastrar por aluno: "))
+
+for li_num_alunos in range(li_quantidade_alunos):
+    print()
+    nome= input(f"digite o nome do {li_num_alunos + 1}° aluno: ")
+    print()
+    notas = []
+    for x in range (li_quantas_notas):
+       
+       nota= float(input(f"digite a {x + 1} nota do {nome}: "))
+       notas.append(nota)
+    media = sum(notas)/len(notas)
+    nome_e_medias[nome] = media
+
+
+print("o aluno com a maior média é: ", max(nome_e_medias, key=nome_e_medias.get))
+
+
+
+EX 2: 
+
+def fatorial (n):
+    resultado = 1
+    for x in range(1, n + 1):
+        resultado *= x
+    return resultado
+
+
+numero = int(input("digite um numero: "))
+
+print(f"o fatorial de {numero} é {fatorial(numero)}")
+
+
+
+EX 3: 
+
+# Faça um programa que leia 10 números e informe quantos são pares e ímpares.
+numeros = []
+pares = []
+impares = []
+
+
+print()
+li_quantos_numeros = int(input("digite quantos numeros você quer verificar se impar ou par: "))
+print()
+
+for x in range(li_quantos_numeros):
+    numero = int(input(f"digite o {x+1}° numero que voce quer verificar se é par ou impar: "))
+    if numero % 2 ==0:
+        pares.append(numero)
+    else:
+        impares.append(numero)
+    numeros.append(numero)
+    # calculo_Impar_par(numero)
+
+print()
+print(f"dentre os {len(numeros)}, {len(pares)} são pares e {len(impares)} são impares")
+print()
+
+
+
+
+
+EX 5: 
+
+notas = []
+
+nota = float(input("digite a primeira nota: "))
+
+while True :
+    nota = float(input(f"digite as notas nota: "))
+    
+
+    if nota <= 0:
+        break
+    notas.append(nota)
+    
+if len(notas) > 0:
+    media = sum(notas)/len(notas)  
+    print(f"a media de tudo é {media}")
+else:
+    print("nada foi digitado")
+
+
+EX 8: 
+
+cadastro_user = input("cadastre o seu user: ")
+cadastro_senha = input("cadastre a sua senha: ")
+print()
+
+login_user = input("digite seu user: ")
+login_senha = input("digite sua senha: ")
+
+while login_user != cadastro_user or login_senha != cadastro_senha:
+  print("User e ou senha incorretos, tente novamente")
+  print()
+  login_user = input("digite seu user: ")
+  login_senha = input("digite sua senha: ")
+
+print()
+print("Login efetuado com sucesso!")
+
+
+
+EX 11: 
+
+# 11. Desenvolva um algoritmo que gere a tabuada completa de um número.
+
+qual_tabuada = int(input("digite qual numero voce quer ver a tabuada: "))
+
+ate_qual_numero = int(input("digite até onde voce quer ver a tabuada: "))
+
+for x in range(ate_qual_numero):
+    print(f"{qual_tabuada} X {x+1} = {qual_tabuada * (x+1)}")
+
+
+
+EX 19: 
+
+li_numeros = []
+
+li_quantos_nums = int(input("digite quantos numeros voce quer registar: "))
+
+for x in range(li_quantos_nums):
+    li_numero = int(input(f"digite o {x + 1}° numero: "))
+    li_numeros.append(li_numero)
+
+print(f"o maior numero da lista é: {max(li_numeros)} e o menor é: {min(li_numeros)}")
+
+
+
+
+EX 20: 
+saldo = 00.00
+
+while True:
+    print()
+    print("--Bem vindo À tela inicial--")
+    print("--Digite 1 para realiar depositos--")
+    print("--Digite 2 para realizar saques--")
+    print("--Digite 3 para visualizar saldo--")
+    print("--Digite 4 para sair--")
+    print()
+
+    li_opcao = int(input("digite o numero da opção desejada: "))
+
+    if li_opcao == 1:
+        print()
+        deposito = float(input("digite quanto voce deseja depositar na conta: "))
+
+        saldo += deposito
+        print(f"o novo saldo é de: {saldo}")
+        print()
+    elif li_opcao == 2:
+        print()
+        saque = float(input("digite quanto voce deseja sacar da conta: "))
+        if saque > saldo:
+            print()
+            print("error: saldo insuficiente")
+            print()
+        else:
+            saldo -= saque
+            print(f"o novo saldo é de: {saldo}")
+            print()
+    elif li_opcao == 3:
+        print(f"o saldo atual é de: {saldo}")
+    elif li_opcao == 4:
+        print("saindo do sistema bancario")
+        break
