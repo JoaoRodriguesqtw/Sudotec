@@ -1,0 +1,111 @@
+═══════════════════════════════════════════════════════════════════════════════
+EXERCÍCIO 1 - Identificar Níveis de Visibilidade de ATRIBUTOS
+═══════════════════════════════════════════════════════════════════════════════ 
+═══════════════════════════════════════════════════════════════════════════════
+ 
+INSTRUÇÕES:
+Para CADA atributo listado abaixo, responda qual é o nível de visibilidade dele.
+Escolha entre:
+  • PÚBLICO
+  • PROTEGIDO
+  • PRIVADO
+═══════════════════════════════════════════════════════════════════════════════
+ 
+CLASSE 1: Pessoa
+─────────────────
+ 
+class Pessoa:
+    def __init__(self, nome, idade):
+        self.nome = nome
+        self._naturalidade = "Brasil"
+        self.__cartao_credito = "1234-5678-9012-3456"
+        self._historico_empregos = []
+ 
+Identifique o nível de cada atributo:
+ 
+a self.nome
+   Nível: _______public__________
+ 
+b self._naturalidade
+   Nível: _______protected__________
+
+ 
+c self.__cartao_credito
+   Nível: _______privated__________
+
+ 
+d self._historico_empregos
+   Nível: _______protected__________
+
+ 
+ 
+CLASSE 2: ContaBancaria
+───────────────────────
+ 
+class ContaBancaria:
+    def __init__(self, titular):
+        self.titular = titular
+        self.__saldo = 0
+        self._limite_diario = 1000
+        self.__pin_seguranca = "1234"
+        self._data_criacao = "2024-01-15"
+ 
+Identifique o nível de cada atributo:
+ 
+a self.titular
+   Nível: _______public__________
+
+ 
+b self.__saldo
+   Nível: _______privated__________
+
+ 
+c self._limite_diario
+   Nível: ________protected_________
+
+ 
+d self.__pin_seguranca
+   Nível: ________privated_________
+
+ 
+e self._data_criacao
+   Nível: _______protected__________
+
+ 
+ 
+CLASSE 3: Veiculo
+──────────────────
+ 
+class Veiculo:
+    def __init__(self, marca, modelo):
+        self.marca = marca
+        self.modelo = modelo
+        self.__velocidade_maxima = 200
+        self._velocidade_atual = 0
+        self.__motor = "V6"
+        self._proxima_manutencao = "2025-06-15"
+ 
+Identifique o nível de cada atributo:
+ 
+a self.marca
+   Nível: ________public_________
+
+ 
+b self.modelo
+   Nível: ________public_________
+
+ 
+c self.__velocidade_maxima
+   Nível: _______privated__________
+
+ 
+d self._velocidade_atual
+   Nível: ______protected___________
+
+ 
+e self.__motor
+   Nível: _______privated__________
+
+ 
+f self._proxima_manutencao
+   Nível: _______protected__________
